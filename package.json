@@ -8,7 +8,7 @@
     "build": "tsc -b && vite build",
     "lint": "eslint .",
     "preview": "vite preview",
-    "test": "npx playwright test --project=chromium"
+    "test": "npx playwright test --project=chromium --reporter=json"
   },
   "dependencies": {
     "react": "^19.2.0",

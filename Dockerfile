@@ -8,7 +8,7 @@ WORKDIR /test_runner
 COPY . .
 
 # Install dependencies (fast, cached)
-# RUN npm install
+RUN npm ci
 
 # expose port for local dev server 
 # EXPOSE 5173
