@@ -23,8 +23,11 @@ export default defineConfig({
   workers: 1,
   /* Reporter to use. See https://playwright.dev/docs/test-reporters */
   // reporter: [['json', { outputFile: 'results.json' }]],
+  // reporter: [
+  //   ['json', { outputFile: 'playwright-report/report.json' }]
+  // ],
   reporter: [
-    ['json', { outputFile: 'playwright-report/report.json' }]
+    ["./reporters/summary-reporter.ts"]
   ],
   /* Shared settings for all the projects below. See https://playwright.dev/docs/api/class-testoptions. */
 
@@ -38,7 +41,7 @@ export default defineConfig({
     video: 'off'
   },
   webServer: {
-    command: 'npm run dev',
+    command: 'npm run preview',
     port: 5173,
     // reuseExistingServer: !process.env.CI,
     // timeout: 120 * 1000,
