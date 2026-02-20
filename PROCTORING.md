@@ -57,13 +57,13 @@ clean, review-friendly logs
 
 ---
 
-# 🚀 How to Use Kanshi for the Assessment
+# 🚀 How to Use ExamX for the Assessment
 
 Follow these steps carefully.
 
 ---
 
-## 1️⃣ Install Kanshi Extension
+## 1️⃣ Install ExamX Extension
 
 1. Open Visual Studio Code.
 2. Go to Extensions (`Ctrl + Shift + X`).
