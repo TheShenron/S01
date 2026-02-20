@@ -23,12 +23,12 @@ export default defineConfig({
   workers: 1,
   /* Reporter to use. See https://playwright.dev/docs/test-reporters */
   // reporter: [['json', { outputFile: 'results.json' }]],
-  // reporter: [
-  //   ['json', { outputFile: 'playwright-report/report.json' }]
-  // ],
   reporter: [
-    ["./reporters/summary-reporter.ts"]
+    ['json', { outputFile: 'playwright-report/report.json' }]
   ],
+  // reporter: [
+  //   ["./reporters/summary-reporter.js"]
+  // ],
   /* Shared settings for all the projects below. See https://playwright.dev/docs/api/class-testoptions. */
 
   use: {
