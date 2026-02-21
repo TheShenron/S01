@@ -1,3 +1,4 @@
+import React from "react";
 import { useCart } from "../context/CartContext";
 import type { CartItemType } from "../types/cart";
 
@@ -5,7 +6,7 @@ interface Props {
     item: CartItemType;
 }
 
-export default function CartItem({ item }: Props) {
+function CartItem({ item }: Readonly<Props>) {
     const { updateQuantity, removeItem } = useCart();
 
     return (
@@ -19,7 +20,11 @@ export default function CartItem({ item }: Props) {
                     updateQuantity(item.id, Number(e.target.value))
                 }
             />
-            <button onClick={() => removeItem(item.id)}>Remove</button>
+            <button onClick={() => removeItem(item.id)}>
+                Remove
+            </button>
         </div>
     );
 }
+
+export default React.memo(CartItem);

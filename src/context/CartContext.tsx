@@ -2,7 +2,10 @@ import {
     createContext,
     useContext,
     useState,
-    ReactNode
+    type ReactNode,
+    useEffect,
+    useCallback,
+    useMemo
 } from "react";
 import type { CartItemType, Product } from "../types/cart";
 
@@ -15,53 +18,91 @@ interface CartContextType {
     setCouponDiscount: (discount: number) => void;
 }
 
-const CartContext = createContext<CartContextType | null>(null);
+const CartContext = createContext<CartContextType | undefined>(undefined);
 
-export function CartProvider({ children }: { children: ReactNode }) {
-    const [cart, setCart] = useState<CartItemType[]>([]);
+const CART_STORAGE_KEY = "smart_cart";
+
+function loadCart(): CartItemType[] {
+    try {
+        const stored = localStorage.getItem(CART_STORAGE_KEY);
+        if (!stored) return [];
+
+        const parsed: unknown = JSON.parse(stored);
+
+        if (!Array.isArray(parsed)) return [];
+
+        return parsed.filter((item): item is CartItemType => {
+            return (
+                typeof item.id === "number" &&
+                typeof item.name === "string" &&
+                typeof item.price === "number" &&
+                typeof item.quantity === "number"
+            );
+        });
+    } catch {
+        return [];
+    }
+}
+
+export function CartProvider({ children }: Readonly<{ children: ReactNode }>) {
+    const [cart, setCart] = useState<CartItemType[]>(loadCart);
     const [couponDiscount, setCouponDiscount] = useState<number>(0);
 
-    const addToCart = (product: Product) => {
+    // ✅ Persist cart safely
+    useEffect(() => {
+        localStorage.setItem(CART_STORAGE_KEY, JSON.stringify(cart));
+    }, [cart]);
+
+    const addToCart = useCallback((product: Product) => {
         setCart((prev) => {
             const existing = prev.find((i) => i.id === product.id);
 
             if (existing) {
-                existing.quantity += 1; // ❌ mutation
-                return [...prev];
+                return prev.map((item) =>
+                    item.id === product.id
+                        ? { ...item, quantity: item.quantity + 1 }
+                        : item
+                );
             }
 
             return [...prev, { ...product, quantity: 1 }];
         });
-    };
+    }, []);
 
-    const updateQuantity = (id: number, quantity: number) => {
+    const updateQuantity = useCallback((id: number, quantity: number) => {
+        if (quantity < 1) return;
+
         setCart((prev) =>
             prev.map((item) =>
                 item.id === id ? { ...item, quantity } : item
             )
         );
-    };
+    }, []);
 
-    const removeItem = (id: number) => {
+    const removeItem = useCallback((id: number) => {
         setCart((prev) => prev.filter((item) => item.id !== id));
-    };
+    }, []);
+
+    const value = useMemo(
+        () => ({
+            cart,
+            couponDiscount,
+            addToCart,
+            updateQuantity,
+            removeItem,
+            setCouponDiscount
+        }),
+        [cart, couponDiscount, addToCart, updateQuantity, removeItem]
+    );
 
     return (
-        <CartContext.Provider
-            value={{
-                cart,
-                couponDiscount,
-                addToCart,
-                updateQuantity,
-                removeItem,
-                setCouponDiscount
-            }}
-        >
+        <CartContext.Provider value={value}>
             {children}
         </CartContext.Provider>
     );
 }
 
+// eslint-disable-next-line react-refresh/only-export-components
 export function useCart(): CartContextType {
     const context = useContext(CartContext);
     if (!context) {

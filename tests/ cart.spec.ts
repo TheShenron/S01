@@ -10,16 +10,16 @@ test.beforeEach(async ({ page }) => {
 // 1️⃣ Products Render Correctly
 //
 test('should render product list', async ({ page }) => {
-    await expect(page.getByText('Laptop')).toBeVisible();
-    await expect(page.getByText('Mouse')).toBeVisible();
-    await expect(page.getByText('Keyboard')).toBeVisible();
+    await expect(page.locator('[data-testid="product-1"]')).toBeVisible();
+    await expect(page.locator('[data-testid="product-2"]')).toBeVisible();
+    await expect(page.locator('[data-testid="product-3"]')).toBeVisible();
 });
 
 //
 // 2️⃣ Add Item To Cart
 //
 test('should add product to cart', async ({ page }) => {
-    await page.getByText('Laptop').locator('..').getByRole('button').click();
+    await page.locator('[data-testid="product-1"] button').click(); // Laptop
 
     await expect(page.getByText('Cart')).toBeVisible();
     const qtyInput = page.locator('input[type="number"]');
@@ -30,7 +30,7 @@ test('should add product to cart', async ({ page }) => {
 // 3️⃣ Increase Quantity Updates Total
 //
 test('should update quantity and recalculate total', async ({ page }) => {
-    await page.getByText('Mouse').locator('..').getByRole('button').click();
+    await page.locator('[data-testid="product-2"] button').click(); // Mouse
 
     const qtyInput = page.locator('input[type="number"]');
     await qtyInput.fill('3');
@@ -42,7 +42,7 @@ test('should update quantity and recalculate total', async ({ page }) => {
 // 4️⃣ Remove Item From Cart
 //
 test('should remove item from cart', async ({ page }) => {
-    await page.getByText('Keyboard').locator('..').getByRole('button').click();
+    await page.locator('[data-testid="product-3"] button').click(); // Keyboard
     await page.getByText('Remove').click();
 
     await expect(page.getByText('Keyboard')).not.toBeVisible();
@@ -52,7 +52,7 @@ test('should remove item from cart', async ({ page }) => {
 // 5️⃣ Apply Valid Coupon
 //
 test('should apply valid coupon', async ({ page }) => {
-    await page.getByText('Laptop').locator('..').getByRole('button').click();
+    await page.locator('[data-testid="product-1"] button').click(); // Laptop
 
     await page.getByPlaceholder('Coupon code').fill('SAVE10');
     await page.getByRole('button', { name: 'Apply' }).click();
@@ -66,7 +66,7 @@ test('should apply valid coupon', async ({ page }) => {
 // 6️⃣ Invalid Coupon Should Not Change Total
 //
 test('should not apply invalid coupon', async ({ page }) => {
-    await page.getByText('Laptop').locator('..').getByRole('button').click();
+    await page.locator('[data-testid="product-1"] button').click(); // Laptop
 
     await page.getByPlaceholder('Coupon code').fill('INVALID');
     await page.getByRole('button', { name: 'Apply' }).click();
@@ -80,7 +80,7 @@ test('should not apply invalid coupon', async ({ page }) => {
 // 7️⃣ Bulk Mouse Discount Rule
 //
 test('should apply bulk mouse discount rule', async ({ page }) => {
-    await page.getByText('Mouse').locator('..').getByRole('button').click();
+    await page.locator('[data-testid="product-2"] button').click(); // Mouse
 
     const qtyInput = page.locator('input[type="number"]');
     await qtyInput.fill('3');
@@ -92,19 +92,18 @@ test('should apply bulk mouse discount rule', async ({ page }) => {
 // 8️⃣ Persistence After Reload
 //
 test('should persist cart after reload', async ({ page }) => {
-    await page.getByText('Laptop').locator('..').getByRole('button').click();
+    await page.locator('[data-testid="product-1"] button').click(); // Laptop
 
     await page.reload();
 
     await expect(page.locator('input[type="number"]')).toHaveValue('1');
-
 });
 
 //
 // 9️⃣ Prevent Negative Quantity
 //
 test('should not allow negative quantity', async ({ page }) => {
-    await page.getByText('Mouse').locator('..').getByRole('button').click();
+    await page.locator('[data-testid="product-2"] button').click(); // Mouse
 
     const qtyInput = page.locator('input[type="number"]');
     await qtyInput.fill('-5');
@@ -143,7 +142,7 @@ test('should handle rapid coupon apply clicks safely', async ({ page }) => {
 // 1️⃣2️⃣ Subtotal Calculation Precision
 //
 test('should calculate tax correctly with precision', async ({ page }) => {
-    await page.getByText('Mouse').locator('..').getByRole('button').click();
+    await page.locator('[data-testid="product-2"] button').click(); // Mouse
 
     const qtyInput = page.locator('input[type="number"]');
     await qtyInput.fill('3');

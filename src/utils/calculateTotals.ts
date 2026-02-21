@@ -1,4 +1,5 @@
 import type { CartItemType } from "../types/cart";
+import { discountRules } from "../data/discountRules";
 
 export interface Totals {
     subtotal: number;
@@ -6,18 +7,35 @@ export interface Totals {
     total: number;
 }
 
+const TAX_RATE = 0.1;
+
+function round(value: number): number {
+    return Math.round((value + Number.EPSILON) * 100) / 100;
+}
+
 export function calculateTotals(
     cart: CartItemType[],
-    discount: number
+    couponDiscount: number
 ): Totals {
-    let subtotal = 0;
+    const subtotal = cart.reduce(
+        (sum, item) => sum + item.price * item.quantity,
+        0
+    );
 
-    cart.forEach((item) => {
-        subtotal += item.price * item.quantity;
-    });
+    const ruleDiscount = discountRules
+        .filter((rule) => rule.condition(cart))
+        .reduce((sum, rule) => sum + rule.discount, 0);
 
-    const tax = subtotal * 0.1;
-    const total = subtotal + tax - discount;
+    const totalDiscount = ruleDiscount + couponDiscount;
 
-    return { subtotal, tax, total };
+    const discountedSubtotal = Math.max(subtotal - totalDiscount, 0);
+
+    const tax = discountedSubtotal * TAX_RATE;
+    const total = discountedSubtotal + tax;
+
+    return {
+        subtotal: round(subtotal),
+        tax: round(tax),
+        total: round(total)
+    };
 }

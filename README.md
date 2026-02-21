@@ -10,8 +10,6 @@ This project is a partially implemented Smart Shopping Cart built with:
 
 Your task is to complete and improve the system according to the requirements below.
 
----
-
 ## 📦 Project Overview
 
 This application allows users to:
@@ -27,13 +25,9 @@ However, the current implementation is incomplete and contains architectural and
 
 You must fix, improve, and extend it.
 
----
-
 # 🚨 Your Tasks
 
 You must complete the following features:
-
----
 
 ## 1️⃣ Fix State Mutation Bug
 
@@ -45,8 +39,6 @@ Requirements:
 - Follow immutable update patterns
 - Ensure React re-renders correctly
 
----
-
 ## 2️⃣ Implement Cart Persistence
 
 The cart should:
@@ -55,8 +47,6 @@ The cart should:
 - Save to `localStorage` whenever it changes
 - Handle invalid or corrupted stored data safely
 - Avoid infinite `useEffect` loops
-
----
 
 ## 3️⃣ Implement Discount Rule Engine
 
@@ -73,8 +63,6 @@ Important:
 - Do NOT store calculated totals in state.
 - Totals must always be derived.
 
----
-
 ## 4️⃣ Improve Total Calculation
 
 The current total calculation has issues:
@@ -87,8 +75,6 @@ Requirements:
 - Use a safe rounding strategy
 - Ensure values display correctly (2 decimal places)
 - Avoid floating precision issues
-
----
 
 ## 5️⃣ Fix Async Coupon Race Condition
 
@@ -106,8 +92,6 @@ You must handle:
 - Proper cleanup logic
 - Disabled button while validating
 
----
-
 ## 6️⃣ Improve Type Safety
 
 Requirements:
@@ -118,8 +102,6 @@ Requirements:
 - Strongly typed context
 - Avoid nullable misuse
 - Improve type structure if necessary
-
----
 
 ## 7️⃣ Avoid Unnecessary Re-renders
 
@@ -135,8 +117,6 @@ You may use:
 - `React.memo`
 
 But do NOT over-optimize.
-
----
 
 ## 8️⃣ Maintain Clean Architecture
 
@@ -169,8 +149,6 @@ You should:
 - Refresh page after adding items
 - Corrupted localStorage data
 
----
-
 # 🏆 Bonus (Optional)
 
 If you want to go further:
@@ -180,8 +158,6 @@ If you want to go further:
 - Add loading indicators per item
 - Convert cart logic into a custom hook
 - Add undo/redo support
-
----
 
 # 📊 Evaluation Criteria
 
@@ -214,30 +190,6 @@ You will be evaluated on:
 - Separation of concerns
 - Avoiding unnecessary complexity
 - Scalability mindset
-
----
-
-# ⏳ Time Expectation
-
-Expected completion time:
-
-- Intern level: 4–8 hours
-- Strong intern: 3–5 hours
-
-Quality matters more than speed.
-
----
-
-# 📁 Submission Guidelines
-
-Please submit:
-
-- Final source code
-- Short explanation of architectural decisions
-- Any tradeoffs made
-- Any improvements you would make with more time
-
----
 
 # 🚀 Goal
 

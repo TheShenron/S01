@@ -4,14 +4,22 @@ import { validateCoupon } from "../utils/validateCoupon";
 
 export default function Coupon() {
     const { setCouponDiscount } = useCart();
-    const [code, setCode] = useState<string>("");
-    const [loading, setLoading] = useState<boolean>(false);
+    const [code, setCode] = useState("");
+    const [loading, setLoading] = useState(false);
 
     const applyCoupon = async () => {
+        if (loading) return;
+
         setLoading(true);
-        const discount = await validateCoupon(code);
-        setCouponDiscount(discount);
-        setLoading(false);
+
+        try {
+            const discount = await validateCoupon(code);
+            setCouponDiscount(discount);
+        } catch (error) {
+            console.error("Coupon validation failed:", error);
+        } finally {
+            setLoading(false);
+        }
     };
 
     return (

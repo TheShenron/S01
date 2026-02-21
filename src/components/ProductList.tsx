@@ -8,7 +8,7 @@ export default function ProductList() {
         <div>
             <h2>Products</h2>
             {products.map((p) => (
-                <div key={p.id}>
+                <div key={p.id} data-testid={`product-${p.id}`}>
                     {p.name} - ${p.price}
                     <button onClick={() => addToCart(p)}>Add</button>
                 </div>

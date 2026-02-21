@@ -35,36 +35,9 @@ After the exam starts:
 You may submit the exam manually using the **Submit Exam** button, or it will be automatically submitted when the timer expires.
 
 
-# ⏳ Timer Rules
-
-- The timer runs continuously once started.
-- If time expires:
-  - The project is automatically submitted
-  - The session is locked
-- You may manually submit before time ends.
-
----
-
-# 📤 Submitting the Exam
-
-You can submit in one of two ways:
-
-1. Click **Submit Exam**
-2. Allow the timer to expire (auto-submit)
-
-After submission:
-
-- The session ends
-- Logs are uploaded
-- Any further changes may be tracked
-
----
-
 # 🛡️ Technical Assessment – Rules & Guidelines
 
 Please read the following carefully. These rules are mandatory.
-
----
 
 # ⏱️ Commit & Version Control Rules (MANDATORY)
 
@@ -94,7 +67,6 @@ fix: handle coupon validation edge case
 
 ⚠️ Your commit history will be reviewed carefully.
 
----
 
 # 🤖 AI Usage Policy
 
@@ -104,7 +76,6 @@ fix: handle coupon validation edge case
 
 Unrealistic implementation speed or suspicious commit patterns may lead to disqualification.
 
----
 
 # 🖥️ Project & Environment Rules
 
@@ -116,8 +87,6 @@ You must follow these constraints strictly:
 - Do NOT change the project structure.
 - Do NOT rename or restructure configuration files.
 
----
-
 # 🧩 System Requirements
 
 Before starting, ensure you have:
@@ -125,8 +94,6 @@ Before starting, ensure you have:
 - Visual Studio Code **v1.80 or later**
 - Stable internet connection
 - Access to your registered email (for verification)
-
----
 
 # ⚠️ Strict Prohibited Actions
 
@@ -139,8 +106,6 @@ The following actions may result in disqualification:
 - Opening multiple VS Code instances for the same exam
 - Tampering with tracking or logs
 
----
-
 # ✅ Final Notes
 
 - Plan your time wisely.
@@ -150,7 +115,5 @@ The following actions may result in disqualification:
 - Test your solution carefully.
 
 Your problem-solving approach matters as much as the final output.
-
----
 
 **Good luck! 🚀**
