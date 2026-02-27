@@ -3,7 +3,7 @@
     "title": "Smart Shopping Cart",
     "description": "Build a smart shopping cart application that allows users to add items, view their cart, and proceed to checkout. The application should have a user-friendly interface and support basic cart functionalities such as adding, removing, and updating items in the cart.",
     "difficulty": "medium",
-    "duration": "1h",
+    "duration": 60,
     "language": "react",
     "entry": "src/main.ts",
     "editableFolders": [
