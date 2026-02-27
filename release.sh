@@ -1,25 +1,23 @@
 #!/bin/bash
 
-OUTPUT="release.zip"
+if [ -z "$1" ]; then
+  echo "Usage: ./release.sh vX.X.X"
+  exit 1
+fi
 
-echo "Creating release archive from current commit (HEAD)..."
+VERSION=$1
+PROJECT_NAME=$(basename "$(pwd)")
+OUTPUT="${PROJECT_NAME}-${VERSION}.zip"
 
-# Remove old archive
-rm -f "$OUTPUT"
+echo "Creating release archive for $PROJECT_NAME ($VERSION)..."
 
 git archive --format=zip \
   --output="$OUTPUT" \
-  HEAD \
-  -- . \
-  ':(exclude)tests' \
-  ':(exclude)release.sh' \
-  ':(exclude).git' \
-  ':(exclude).github' \
-  ':(exclude)node_modules'
+  "$VERSION" \
+  -- . ':(exclude)tests' ':(exclude)release.sh'
 
 if [ $? -eq 0 ]; then
-  echo "✅ Release created successfully: $OUTPUT"
+  echo "✅ Created $OUTPUT"
 else
-  echo "❌ Failed to create release"
-  exit 1
+  echo "❌ Failed. Make sure the tag exists."
 fi
