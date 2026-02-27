@@ -1,0 +1,39 @@
+{
+    "id": "smart_shopping_cart",
+    "title": "Smart Shopping Cart",
+    "description": "Build a smart shopping cart application that allows users to add items, view their cart, and proceed to checkout. The application should have a user-friendly interface and support basic cart functionalities such as adding, removing, and updating items in the cart.",
+    "difficulty": "medium",
+    "duration": "1h",
+    "language": "react",
+    "entry": "src/main.ts",
+    "editableFolders": [
+        "src"
+    ],
+    "excludeOnSubmit": [
+        "node_modules",
+        "public",
+        "tests",
+        ".dockerignore",
+        ".gitignore",
+        "Dockerfile",
+        "eslint.config.js",
+        "Guidelines.md",
+        "index.html",
+        "package-lock.json",
+        "package.json",
+        "playwright.config.ts",
+        "question.json",
+        "README.md",
+        "tsconfig.app.json",
+        "tsconfig.json",
+        "tsconfig.node.json",
+        "vite.config.ts",
+        "build",
+        ".git",
+        "dist",
+        ".eslintignore"
+    ],
+    "installCommand": "npm install",
+    "runCommand": "npm run dev",
+    "testCommand": "npm test"
+}
