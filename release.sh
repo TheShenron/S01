@@ -17,7 +17,7 @@ git archive --format=zip \
   -- . \
   ':(exclude)tests' \
   ':(exclude)release.sh' \
-  ':(exclude).docterignore' \
+  ':(exclude).dockerignore' \
   ':(exclude).DS_Store' \
   ':(exclude)Dockerfile'
 
