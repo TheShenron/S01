@@ -14,7 +14,12 @@ echo "Creating release archive for $PROJECT_NAME ($VERSION)..."
 git archive --format=zip \
   --output="$OUTPUT" \
   "$VERSION" \
-  -- . ':(exclude)tests' ':(exclude)release.sh'
+  -- . \
+  ':(exclude)tests' \
+  ':(exclude)release.sh' \
+  ':(exclude).docterignore' \
+  ':(exclude).DS_Store' \
+  ':(exclude)Dockerfile'
 
 if [ $? -eq 0 ]; then
   echo "✅ Created $OUTPUT"
