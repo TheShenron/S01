@@ -14,14 +14,17 @@ export default defineConfig({
     ['json', { outputFile: 'playwright-report/report.json' }]
   ],
   use: {
+    baseURL: 'http://localhost:5173',
+    video: 'off',
     trace: 'off',
     screenshot: 'off',
-    video: 'off',
     headless: true
   },
   webServer: {
     command: 'npm run dev',
+    port: 5173,
     reuseExistingServer: !process.env.CI,
+    timeout: 120000
   },
   projects: [
     {

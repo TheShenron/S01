@@ -11,7 +11,7 @@ COPY . .
 RUN npm ci
 
 # expose port for local dev server 
-# EXPOSE 5173
+EXPOSE 5173
 
 # Run tests by default
 CMD ["npm", "test"]

@@ -1,9 +1,7 @@
 import { test, expect } from '@playwright/test';
 
-const BASE_URL = 'http://localhost:5173';
-
 test.beforeEach(async ({ page }) => {
-    await page.goto(BASE_URL);
+    await page.goto('/');
 });
 
 //
@@ -19,7 +17,7 @@ test('should render product list', async ({ page }) => {
 // 2️⃣ Add Item To Cart
 //
 test('should add product to cart', async ({ page }) => {
-    await page.goto(BASE_URL);
+    await page.goto('/');
 
     await page.getByTestId('product-1').getByRole('button').click();
 
@@ -36,7 +34,7 @@ test('should add product to cart', async ({ page }) => {
 // 3️⃣ Increase Quantity Updates Total
 //
 test('should update quantity and recalculate total', async ({ page }) => {
-    await page.goto(BASE_URL);
+    await page.goto('/');
 
     await page.getByTestId('product-2').getByRole('button').click();
 
@@ -51,7 +49,7 @@ test('should update quantity and recalculate total', async ({ page }) => {
 // 4️⃣ Remove Item From Cart
 //
 test('should remove item from cart', async ({ page }) => {
-    await page.goto(BASE_URL);
+    await page.goto('/');
 
     // Add Keyboard
     await page.getByTestId('product-3').getByRole('button').click();
