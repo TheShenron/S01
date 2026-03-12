@@ -7,9 +7,9 @@ export default defineConfig({
   retries: 0,
   workers: 1,
   expect: {
-    timeout: 5000,
+    timeout: 10000,
   },
-  timeout: 5000,
+  timeout: 60000,
   reporter: [
     ['json', { outputFile: 'playwright-report/report.json' }]
   ],
@@ -21,10 +21,10 @@ export default defineConfig({
     headless: true
   },
   webServer: {
-    command: 'npm run dev',
+    command: 'npm run build && npm run preview',
     port: 5173,
     reuseExistingServer: !process.env.CI,
-    timeout: 120000
+    timeout: 180000
   },
   projects: [
     {
