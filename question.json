@@ -35,5 +35,5 @@
     ],
     "installCommand": "npm install",
     "runCommand": "npm run dev",
-    "testCommand": "npm run test"
+    "testCommand": "npm test"
 }
